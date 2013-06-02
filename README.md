@@ -1,5 +1,7 @@
 # TranscribeMe gem
 
+[![Dependency Status](https://gemnasium.com/tuttinator/transcribeme.png)](https://gemnasium.com/tuttinator/transcribeme)
+
 This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon
 
 ## Installation
