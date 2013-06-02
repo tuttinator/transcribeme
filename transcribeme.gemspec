@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["caleb@prettymint.co.nz"]
   spec.description   = %q{This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon}
   spec.summary       = %q{Ruby wrapper around the TranscribeMe SOAP API}
-  spec.homepage      = ""
+  spec.homepage      = "http://tuttinator.github.io/transcribeme/"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
