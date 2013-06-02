@@ -6,10 +6,10 @@ require 'transcribeme/version'
 Gem::Specification.new do |spec|
   spec.name          = "transcribeme"
   spec.version       = TranscribeMe::VERSION
-  spec.authors       = ["Caleb Tutty"]
+  spec.authors       = ["Tuttinator"]
   spec.email         = ["caleb@prettymint.co.nz"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon}
+  spec.summary       = %q{Ruby wrapper around the TranscribeMe SOAP API}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -22,4 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "yard"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "vcr"
 end
