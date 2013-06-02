@@ -1,6 +1,6 @@
-# Transcribeme::Api
+# TranscribeMe gem
 
-TODO: Write a gem description
+This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon
 
 ## Installation
 
