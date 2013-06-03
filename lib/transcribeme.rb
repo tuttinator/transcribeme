@@ -13,7 +13,7 @@ module TranscribeMe
   end
 end
 
-
+require 'transcribeme/api/client'
 require 'transcribeme/api/customer_login'
 require 'transcribeme/api/session'
 require 'transcribeme/api/recordings'
