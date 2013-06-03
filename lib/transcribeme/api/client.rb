@@ -6,7 +6,7 @@ module TranscribeMe
       attr_reader :client
       
       def initialize
-        @client = Savon.client(wsdl: WSDL, endpoint: ENDPOINT, namespace: NAMESPACE, namespace_identifier: NAMESPACE_IDENTIFIER)
+        @client = ::Savon.client(wsdl: WSDL, endpoint: ENDPOINT, namespace: NAMESPACE, namespace_identifier: NAMESPACE_IDENTIFIER)
         initialize_session!
       end
 

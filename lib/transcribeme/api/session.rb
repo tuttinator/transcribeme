@@ -11,7 +11,9 @@ module TranscribeMe
 
       def create_on_server!
         response = @client.call :initialize_session, xml: xml
-        @session_expiry_time = 1.hour.from_now
+        # Without ActiveSupport
+        #   1.hour.from_now is 3600 seconds from Time.now
+        @session_expiry_time = Time.now + 3600
         @session_id = response.body[:initialize_session_response][:initialize_session_result]
       end
 

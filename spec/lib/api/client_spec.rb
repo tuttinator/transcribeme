@@ -1,3 +1,4 @@
+require 'transcribeme'
 require 'spec_helper'
 
 describe TranscribeMe::API::Client do

@@ -13,6 +13,8 @@ module TranscribeMe
   end
 end
 
+require 'savon'
+
 require 'transcribeme/api/client'
 require 'transcribeme/api/customer_login'
 require 'transcribeme/api/session'
