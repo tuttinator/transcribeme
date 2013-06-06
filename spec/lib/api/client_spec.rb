@@ -4,7 +4,9 @@ require 'spec_helper'
 describe TranscribeMe::API::Client do
   
   before :all do
-    @client = TranscribeMe::API::Client.new 
+    VCR.use_cassette('new_session') do
+      @client = TranscribeMe::API::Client.new 
+    end
   end
 
   it "should be valid" do

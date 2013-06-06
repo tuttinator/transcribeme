@@ -1,9 +1,9 @@
 # TranscribeMe gem
+[![Build Status](https://travis-ci.org/tuttinator/transcribeme.png?branch=master)](https://travis-ci.org/tuttinator/transcribeme)
 [![Gem Version](https://badge.fury.io/rb/transcribeme.png)](http://badge.fury.io/rb/transcribeme)
 [![Dependency Status](https://gemnasium.com/tuttinator/transcribeme.png)](https://gemnasium.com/tuttinator/transcribeme)
 [![Coverage Status](https://coveralls.io/repos/tuttinator/transcribeme/badge.png)](https://coveralls.io/r/tuttinator/transcribeme)
 [![Code Climate](https://codeclimate.com/github/tuttinator/transcribeme.png)](https://codeclimate.com/github/tuttinator/transcribeme)
-
 
 
 This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon
