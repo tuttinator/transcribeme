@@ -3,11 +3,11 @@ module TranscribeMe
 
     class Client
 
-      attr_reader :savon, :session_id, :session_expiry_time
+      attr_accessor :session_id
+      attr_reader :savon, :session_expiry_time
       
       def initialize
         @savon = ::Savon.client(wsdl: WSDL, endpoint: ENDPOINT, namespace: NAMESPACE, soap_version: 1)
-        initialize_session!
       end
 
       def initialize_session!
