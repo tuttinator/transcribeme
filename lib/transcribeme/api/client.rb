@@ -32,7 +32,7 @@ module TranscribeMe
       end
 
       def get_recordings
-        raise "Login first!" unless @customer_login_id
+        # raise "Login first!" unless @customer_login_id
 
         response = @savon.call  :get_customer_recordings, 
                                 message: {  "wsdl:sessionID" => session_id }
@@ -41,7 +41,7 @@ module TranscribeMe
       end
 
       def get_upload_url
-        raise "Login first!" unless @customer_login_id
+        # raise "Login first!" unless @customer_login_id
 
         response = @savon.call  :get_upload_url, 
                                 message: {  "wsdl:sessionID" => @session_id }
@@ -51,29 +51,31 @@ module TranscribeMe
       end
 
       def submit_recording(recording)
-        initialize_session! unless @session.try :valid?
+        # initialize_session! unless @session.try :valid?
         Submission.new(@session.session_id, recording, @savon).submit!
       end
 
       def submit_recording_with_promocode(recording, promocode)
-        initialize_session! unless @session.try :valid?
+        # initialize_session! unless @session.try :valid?
         SubmissionWithPromocode.new(@session.session_id, recording, promocode, @savon).submit!
       end
 
       def get_status(recording_id)
-        raise "Login first!" unless @customer_login_id
+        # raise "Login first!" unless @customer_login_id
         CheckTranscriptionReady.new(@session.session_id, recording_id, @savon).check!
       end
 
       def logout!
-        raise "Login first!" unless @customer_login_id
+        # raise "Login first!" unless @customer_login_id
         FinalizeSession.new(@session.session_id, @savon).submit!
       end
 
       private
 
       def session_valid?
-        @session_expiry_time > Time.now
+        if @session_expiry_time
+          @session_expiry_time > Time.now
+        end
       end
 
       

@@ -6,6 +6,9 @@
 [![Code Climate](https://codeclimate.com/github/tuttinator/transcribeme.png)](https://codeclimate.com/github/tuttinator/transcribeme)
 
 
+### THIS IS STILL IN BETA
+
+
 This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon
 
 ## Installation
