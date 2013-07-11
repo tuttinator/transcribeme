@@ -52,22 +52,23 @@ module TranscribeMe
 
       def submit_recording(recording)
         # initialize_session! unless @session.try :valid?
-        Submission.new(@session.session_id, recording, @savon).submit!
+        Submission.new(@session_id, recording, @savon).submit!
       end
 
       def submit_recording_with_promocode(recording, promocode)
         # initialize_session! unless @session.try :valid?
-        SubmissionWithPromocode.new(@session.session_id, recording, promocode, @savon).submit!
+        SubmissionWithPromocode.new(@session_id, recording, promocode, @savon).submit!
       end
 
       def get_status(recording_id)
         # raise "Login first!" unless @customer_login_id
-        CheckTranscriptionReady.new(@session.session_id, recording_id, @savon).check!
+        CheckTranscriptionReady.new(@session_id, recording_id, @savon).check!
       end
 
       def logout!
         # raise "Login first!" unless @customer_login_id
-        FinalizeSession.new(@session.session_id, @savon).submit!
+        @savon.call  :finalize_session, 
+                                message: {  "wsdl:sessionID"  => @session_id }
       end
 
       private
