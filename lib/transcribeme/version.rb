@@ -1,3 +1,3 @@
 module TranscribeMe
-  VERSION = "0.0.5.beta"
+  VERSION = "1.0.0.alpha"
 end

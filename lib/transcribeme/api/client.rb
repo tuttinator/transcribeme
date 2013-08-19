@@ -6,6 +6,10 @@ module TranscribeMe
       attr_accessor :session_id
       attr_reader :savon, :session_expiry_time
       
+      # Public: Create a new instance of the API Client class
+      # 
+      #
+      # returns self
       def initialize
         @savon = ::Savon.client(wsdl: WSDL, endpoint: ENDPOINT, namespace: NAMESPACE, soap_version: 1)
       end
