@@ -8,7 +8,7 @@
 require 'coveralls'
 Coveralls.wear!
 
-# The VCR gem uses yaml fixtures instead of live HTTP requests 
+# The VCR gem uses yaml fixtures instead of live HTTP requests
 require 'vcr'
 require 'webmock'
 

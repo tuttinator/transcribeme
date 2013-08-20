@@ -1,6 +1,8 @@
+# TranscribeMe
 module TranscribeMe
+  # API module
   module API
-
+    # API Client with methods for interacting with the SOAP API
     class Client
 
       # Public: Returns the session id of the current session
@@ -10,20 +12,20 @@ module TranscribeMe
       # Public: Returns the underlining Savon object
       attr_reader :savon
 
-      WSDL = "http://transcribeme-api.cloudapp.net/PortalAPI.svc?wsdl=wsdl0"
-      ENDPOINT = "http://transcribeme-api.cloudapp.net/PortalAPI.svc"
-      NAMESPACE = "http://TranscribeMe.API.Web"
+      WSDL = 'http://transcribeme-api.cloudapp.net/PortalAPI.svc?wsdl=wsdl0'
+      ENDPOINT = 'http://transcribeme-api.cloudapp.net/PortalAPI.svc'
+      NAMESPACE = 'http://TranscribeMe.API.Web'
 
-      
       # Public: Initializes the API Client class
       #
       def initialize
-        @savon = ::Savon.client(endpoint: ENDPOINT,  namespace: NAMESPACE, soap_version: 1,
-                                wsdl: WSDL,          log: false)
+        # Note: Savon logging is disabled
+        @savon = ::Savon.client(endpoint: ENDPOINT,  namespace: NAMESPACE,
+                                soap_version: 1, wsdl: WSDL, log: false)
       end
 
-      # Public: Initializes a session on the API server and stores to expiry time
-      #         and the session_id in instance variables
+      # Public: Initializes a session on the API server and stores 
+      # the expiry time and the session_id in instance variables
       #
       # Returns the session_id GUID
       def initialize_session
@@ -36,9 +38,9 @@ module TranscribeMe
 
       # Public: Calls the 'SignIn' SOAP action
       #
-      # username - The String which corresponds to a TranscribeMe Portal account username
-      #            which can be any valid email address
-      # password - The String which is the portal account password
+      # username - a String which corresponds to a TranscribeMe Portal 
+      #            account username which can be any valid email address
+      # password - a String which is the portal account password
       #
       # Returns a GUID of the Customer ID
       def sign_in(username, password)
@@ -49,9 +51,9 @@ module TranscribeMe
 
         # Use Savon to call the 'SignIn' SOAP action
         response = @savon.call  :sign_in, 
-                                message: {  "wsdl:sessionID"  => @session_id, 
-                                            "wsdl:username"   =>  username, 
-                                            "wsdl:password"   =>  password }
+                                message: {  'wsdl:sessionID'  => @session_id, 
+                                            'wsdl:username'   =>  username, 
+                                            'wsdl:password'   =>  password }
 
         # Assign the customer_login_id variable to the string in the SOAP response
         @customer_login_id = response.body[:sign_in_response][:sign_in_result]
@@ -64,10 +66,10 @@ module TranscribeMe
       #
       # Returns an Array of Hashes of with the properties of recording objects
       def get_recordings
-        # raise "Login first!" unless @customer_login_id
+        # raise 'Login first!' unless @customer_login_id
 
         response = @savon.call  :get_customer_recordings, 
-                                message: {  "wsdl:sessionID" => session_id }
+                                message: {  'wsdl:sessionID' => session_id }
 
         @recordings = response.body[:get_customer_recordings_response][:get_customer_recordings_result][:recording_info]                                
       end
@@ -76,10 +78,10 @@ module TranscribeMe
       #
       # Returns the upload url as a String
       def get_upload_url
-        # raise "Login first!" unless @customer_login_id
+        # raise 'Login first!' unless @customer_login_id
 
         response = @savon.call  :get_upload_url, 
-                                message: {  "wsdl:sessionID" => @session_id }
+                                message: {  'wsdl:sessionID' => @session_id }
                                 
         @upload_url = response.body[:get_upload_url_response][:get_upload_url_result] 
       end
@@ -93,8 +95,8 @@ module TranscribeMe
         # initialize_session unless @session.try :valid?
 
         response = @savon.call :transcribe_recording, 
-                                            message: { "wsdl:sessionID"   => @session_id, 
-                                                       "wsdl:recordingId" => recording_id }
+                               message: { 'wsdl:sessionID'   => @session_id, 
+                                          'wsdl:recordingId' => recording_id }
 
         response.body[:transcribe_recording_response][:transcribe_recording_result]
       end
@@ -109,9 +111,9 @@ module TranscribeMe
         # initialize_session unless @session.try :valid?
         
         response = @savon.call :transcribe_recording_using_promocode, 
-                                            message: { "wsdl:sessionID"   => @session_id, 
-                                                       "wsdl:recordingId" => recording_id,
-                                                       "wsdl:promoCode"   => promocode}
+                               message: { 'wsdl:sessionID'   => @session_id, 
+                                          'wsdl:recordingId' => recording_id,
+                                          'wsdl:promoCode'   => promocode }
 
         response.body[:transcribe_recording_using_promocode_response][:transcribe_recording_using_promocode_result]
       end
@@ -123,8 +125,8 @@ module TranscribeMe
       # Returns the SOAP response Hash
       def get_recording_info(recording_id)
         @savon.call :get_recording_info,
-                                  message: { "wsdl:sessionID" => @session_id,
-                                             "wsdl:recordingID" => recording_id }
+                    message: { 'wsdl:sessionID'   => @session_id,
+                               'wsdl:recordingID' => recording_id }
       end
 
       # Public: Calls the 'FinalizeSession' SOAP Action to close 
@@ -133,21 +135,17 @@ module TranscribeMe
       # Returns the SOAP response Hash
       def finalize_session
         @savon.call  :finalize_session, 
-                              message: {  "wsdl:sessionID"  => @session_id }
+                     message: { 'wsdl:sessionID' => @session_id }
       end
 
       private
 
-      # Private: Checks if the session expiry time has passed 
+      # Private: Checks if the session expiry time has passed
       #
       # Returns a Boolean
       def session_valid?
-        if @session_expiry_time
-          @session_expiry_time > Time.now
-        end
+        @session_expiry_time > Time.now if @session_expiry_time
       end
-
-      
 
     end
 
