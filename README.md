@@ -6,10 +6,9 @@
 [![Code Climate](https://codeclimate.com/github/tuttinator/transcribeme.png)](https://codeclimate.com/github/tuttinator/transcribeme)
 
 
-### THIS IS STILL IN BETA
+### This gem
 
-
-This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon
+This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon, and includes some extra dangly bits for uploading to Windows Azure Blob storage.
 
 ## Installation
 
@@ -37,11 +36,27 @@ The documentation can be [browsed online](http://rubydoc.info/github/tuttinator/
 
 ## Roadmap
 
-- [ ] Write specs
-- [ ] Set up Travis-CI and document supported Ruby versions
-- [ ] Investigate Windows Azure Blob storage file upload
-- [ ] Document SOAP calls and error messages
-- [ ] Complete YARD documentation
+Version 1.0.0 stable
+
+- [   ] Write specs
+- [ x ] Set up Travis-CI and document supported Ruby versions
+- [ x ] Investigate Windows Azure Blob storage file upload
+- [   ] Include Excon for Windows Azure Blob storage
+- [   ] Base64 decrypt transcription results
+- [   ] Document SOAP calls and error messages
+- [   ] Complete YARD documentation
+
+Version 1.1.0
+
+- [   ] Create CLI interface
+
+RubyMotion
+
+- [   ] A RubyMotion fork (transcribeme-motion), wrapped in BubbleWrap's HTTP DSL
+
+REST API Wrapper
+
+- [   ] A Sinatra RESTful wrapper around SOAP operations
 
 ## Contributing
 
