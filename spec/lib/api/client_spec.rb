@@ -15,7 +15,7 @@ describe TranscribeMe::API::Client do
 
     before :each do
       VCR.use_cassette('new_session') do
-        @client.initialize_session!
+        @client.initialize_session
       end
     end
 
