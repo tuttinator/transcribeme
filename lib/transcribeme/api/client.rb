@@ -10,6 +10,10 @@ module TranscribeMe
       # Public: Returns the underlining Savon object
       attr_reader :savon
 
+      WSDL = "http://transcribeme-api.cloudapp.net/PortalAPI.svc?wsdl=wsdl0"
+      ENDPOINT = "http://transcribeme-api.cloudapp.net/PortalAPI.svc"
+      NAMESPACE = "http://TranscribeMe.API.Web"
+
       
       # Public: Initializes the API Client class
       #

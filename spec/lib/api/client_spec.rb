@@ -4,13 +4,25 @@ require 'spec_helper'
 describe TranscribeMe::API::Client do
   
   before :all do
-    VCR.use_cassette('new_session') do
-      @client = TranscribeMe::API::Client.new 
-    end
+    @client = TranscribeMe::API::Client.new
   end
 
-  it "should be valid" do
+  it "assigns an instance to a variable" do
     @client.should_not be_nil
+  end
+
+  describe "initializing a session" do
+
+    before :each do
+      VCR.use_cassette('new_session') do
+        @client.initialize_session!
+      end
+    end
+
+    it "has a session id property" do
+      @client.session_id.should_not be_nil
+    end
+
   end
 
 end
