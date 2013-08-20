@@ -27,6 +27,10 @@ describe TranscribeMe::API::Client do
       @client.session_id.should == "3ab295eb-ad02-4cef-90f0-fad5e294298e"
     end
 
+    it "has an expiry time that is in the future" do
+      @client.session_expiry_time.should > Time.now
+    end
+
   end
 
 end
