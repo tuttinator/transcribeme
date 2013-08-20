@@ -23,6 +23,10 @@ describe TranscribeMe::API::Client do
       @client.session_id.should_not be_nil
     end
 
+    it "uses the session id in the VCR fixture" do
+      @client.session_id.should == "3ab295eb-ad02-4cef-90f0-fad5e294298e"
+    end
+
   end
 
 end

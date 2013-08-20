@@ -18,14 +18,15 @@ module TranscribeMe
       # Public: Initializes the API Client class
       #
       def initialize
-        @savon = ::Savon.client(wsdl: WSDL, endpoint: ENDPOINT, namespace: NAMESPACE, soap_version: 1)
+        @savon = ::Savon.client(endpoint: ENDPOINT,  namespace: NAMESPACE, soap_version: 1,
+                                wsdl: WSDL,          log: false)
       end
 
       # Public: Initializes a session on the API server and stores to expiry time
       #         and the session_id in instance variables
       #
       # Returns the session_id GUID
-      def initialize_session!
+      def initialize_session
         response = @savon.call :initialize_session
         # Without ActiveSupport
         #   1.hour.from_now is 3600 seconds from Time.now
@@ -40,11 +41,11 @@ module TranscribeMe
       # password - The String which is the portal account password
       #
       # Returns a GUID of the Customer ID
-      def login_with(username, password)
+      def sign_in(username, password)
         
         # If #login_with is called before we have a session_id instance variable
-        # then call initialize_session!
-        initialize_session! unless session_valid?
+        # then call initialize_session
+        initialize_session unless session_valid?
 
         # Use Savon to call the 'SignIn' SOAP action
         response = @savon.call  :sign_in, 
@@ -88,8 +89,8 @@ module TranscribeMe
       # recording_id - a String in GUID format
       #
       # Returns the SOAP response Hash
-      def submit_recording(recording_id)
-        # initialize_session! unless @session.try :valid?
+      def transcribe_recording(recording_id)
+        # initialize_session unless @session.try :valid?
 
         response = @savon.call :transcribe_recording, 
                                             message: { "wsdl:sessionID"   => @session_id, 
@@ -104,15 +105,15 @@ module TranscribeMe
       # promocode    - a String
       #
       # Returns the SOAP response Hash
-      def submit_recording_with_promocode(recording_id, promocode)
-        # initialize_session! unless @session.try :valid?
+      def transcribe_recording_using_promocode(recording_id, promocode)
+        # initialize_session unless @session.try :valid?
         
-        response = @savon.call :transcribe_recording, 
+        response = @savon.call :transcribe_recording_using_promocode, 
                                             message: { "wsdl:sessionID"   => @session_id, 
                                                        "wsdl:recordingId" => recording_id,
                                                        "wsdl:promoCode"   => promocode}
 
-        response.body[:transcribe_recording_response][:transcribe_recording_result]
+        response.body[:transcribe_recording_using_promocode_response][:transcribe_recording_using_promocode_result]
       end
 
       # Public: Calls the 'GetRecordingInfo' SOAP Action
@@ -120,7 +121,7 @@ module TranscribeMe
       # recording_id - a String in GUID format
       #
       # Returns the SOAP response Hash
-      def get_status(recording_id)
+      def get_recording_info(recording_id)
         @savon.call :get_recording_info,
                                   message: { "wsdl:sessionID" => @session_id,
                                              "wsdl:recordingID" => recording_id }
@@ -130,7 +131,7 @@ module TranscribeMe
       # the session on the server
       #
       # Returns the SOAP response Hash
-      def logout!
+      def finalize_session
         @savon.call  :finalize_session, 
                               message: {  "wsdl:sessionID"  => @session_id }
       end
