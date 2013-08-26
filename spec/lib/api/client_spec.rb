@@ -24,7 +24,7 @@ describe TranscribeMe::API::Client do
     end
 
     it 'uses the session id in the VCR fixture' do
-      @client.session_id.should == '3ab295eb-ad02-4cef-90f0-fad5e294298e'
+      @client.session_id.should == '0aaef84b-d303-493c-83c4-c6b69b7ea667'
     end
 
     it 'has an expiry time that is in the future' do
@@ -53,7 +53,13 @@ describe TranscribeMe::API::Client do
 
     context 'after initializing a session' do
 
-      it 'logs in'
+      it 'logs in with a valid username and password' do
+        VCR.use_cassette('successful_sign_in_after_initialize_call') do
+          @result = @client.sign_in('example@transcribeme.com', 'example')
+        end
+
+        @result.should == '65a747ae-0ea4-46a4-afb0-2b76901005ae'
+      end
 
     end
 

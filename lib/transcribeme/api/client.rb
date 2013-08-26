@@ -19,7 +19,7 @@ module TranscribeMe
       # Public: Initializes the API Client class
       #
       def initialize
-        # Note: Savon logging is disabled
+        # Note: Deliberately disabling the verbose Savon logging
         @savon = ::Savon.client(endpoint: ENDPOINT,  namespace: NAMESPACE,
                                 soap_version: 1, wsdl: WSDL, log: false)
       end
@@ -57,7 +57,7 @@ module TranscribeMe
 
         # Assign the customer_login_id variable to the string in the SOAP response
         @customer_login_id = response.body[:sign_in_response][:sign_in_result]
-
+        Response.from_savon response
       end
 
       # Public: Calls the 'GetCustomerRecordings' SOAP Action
