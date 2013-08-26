@@ -128,7 +128,7 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://TranscribeMe.API.Web"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><wsdl:SignIn><wsdl:sessionID>1a1f69a5-0e0b-482e-906c-f4d074124288</wsdl:sessionID><wsdl:username>example@transcribeme.com</wsdl:username><wsdl:password>example</wsdl:password></wsdl:SignIn></env:Body></env:Envelope>
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><wsdl:SignIn><wsdl:sessionID>1a1f69a5-0e0b-482e-906c-f4d074124288</wsdl:sessionID><wsdl:username>invalid_example@transcribeme.com</wsdl:username><wsdl:password>invalid_example</wsdl:password></wsdl:SignIn></env:Body></env:Envelope>
     headers:
       Soapaction:
       - '"http://TranscribeMe.API.Web/IPortalAPI/SignIn"'

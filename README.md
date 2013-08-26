@@ -52,7 +52,9 @@ Version 1.0.0 stable
 - [   ] Document SOAP calls and error messages
 - [   ] Complete YARD documentation
 - [   ] Include option (default)
-- [   ] Validations for GUIDs and handling control-flow exceptions from calling methods dependent on logging in first
+- [   ] Validations for GUIDs 
+- [   ] Exceptions for error handling
+- [   ] Modelling Recording objects, particularly better describing recording status
 
 Version 1.1.0
 

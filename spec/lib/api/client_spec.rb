@@ -3,6 +3,8 @@ require 'spec_helper'
 
 describe TranscribeMe::API::Client do
 
+  GUID_REGEX = /[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-(:?8|9|a|b)[a-f0-9]{3}-[a-f0-9]{12}/
+
   before :all do
     @client = TranscribeMe::API::Client.new
   end
@@ -20,11 +22,12 @@ describe TranscribeMe::API::Client do
     end
 
     it 'has a session id property' do
-      @client.session_id.should_not be_nil
+      expect(@client.session_id).to_not be_nil
     end
 
     it 'uses the session id in the VCR fixture' do
-      @client.session_id.should == '0aaef84b-d303-493c-83c4-c6b69b7ea667'
+      expect(@client.session_id).to match GUID_REGEX
+      expect(@client.session_id).to_not be '00000000-0000-0000-0000-000000000000'
     end
 
     it 'has an expiry time that is in the future' do
@@ -35,34 +38,83 @@ describe TranscribeMe::API::Client do
 
   describe 'logging in as a customer' do
 
-    context 'before initializing a session' do
+    context 'successfully' do
 
-      before :all do
-        @another_client = TranscribeMe::API::Client.new
-      end
+      context 'before initializing a session' do
 
-      it 'logs in with a valid username and password' do
-        VCR.use_cassette('successful_sign_in') do
-          @result = @another_client.sign_in('example@transcribeme.com', 'example')
+        before :all do
+          @another_client = TranscribeMe::API::Client.new
         end
 
-        @result.should == '65a747ae-0ea4-46a4-afb0-2b76901005ae'
+        it 'logs in with a valid username and password' do
+          VCR.use_cassette('successful_sign_in') do
+            @result = @another_client.sign_in('example@transcribeme.com', 'example')
+          end
+
+          expect(@result).to match GUID_REGEX
+          expect(@result).to_not be '00000000-0000-0000-0000-000000000000'
+        end
+
+      end
+
+      context 'after initializing a session' do
+
+        it 'logs in with a valid username and password' do
+          VCR.use_cassette('successful_sign_in_after_initialize_call') do
+            @client.initialize_session
+            @result = @client.sign_in('example@transcribeme.com', 'example')
+          end
+
+          expect(@result).to match GUID_REGEX
+          expect(@result).to_not be '00000000-0000-0000-0000-000000000000'
+        end
+
       end
 
     end
 
-    context 'after initializing a session' do
+    context 'unsuccessfully' do
 
-      it 'logs in with a valid username and password' do
-        VCR.use_cassette('successful_sign_in_after_initialize_call') do
-          @result = @client.sign_in('example@transcribeme.com', 'example')
+      it 'logs in with an invalid username and password' do
+        VCR.use_cassette('unsuccessful_sign_in') do
+          @another_client = TranscribeMe::API::Client.new
+
+          expect do 
+            @another_client.sign_in('invalid_example@transcribeme.com', 'invalid_example')
+          end.to raise_error "Provided credentials are invalid. Please check your login and password and try again."
+
         end
 
-        @result.should == '65a747ae-0ea4-46a4-afb0-2b76901005ae'
       end
 
     end
+  end
 
+  describe 'getting a list of recordings' do
+
+    before :each do
+      VCR.use_cassette('list_of_recordings') do
+        @client.initialize_session
+        @client.sign_in('example@transcribeme.com', 'example')
+        @recordings = @client.get_recordings
+      end
+    end
+
+    it 'returns an array of recordings' do
+      expect(@recordings.class.to_s).to eq "Array"
+    end
+
+    describe 'recordings' do
+
+      before :each do
+        @recording = @recordings.first
+      end
+
+      it 'should have properties' do
+        expect(@recording.keys).to eq [:date_created, :duration, :id, :name, :status]
+      end
+
+    end
 
   end
 

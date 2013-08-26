@@ -23,7 +23,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 26 Aug 2013 01:09:18 GMT
+      - Mon, 26 Aug 2013 01:11:42 GMT
       Content-Length:
       - '4961'
       Connection:
@@ -78,86 +78,7 @@ http_interactions:
         style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
         use="literal"/></wsdl:output></wsdl:operation></wsdl:binding></wsdl:definitions>
     http_version: 
-  recorded_at: Mon, 26 Aug 2013 01:09:24 GMT
-- request:
-    method: get
-    uri: http://transcribeme-api.cloudapp.net/PortalAPI.svc?wsdl=wsdl0
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers: {}
-  response:
-    status:
-      code: 200
-      message: ''
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Server:
-      - Microsoft-IIS/7.0
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Tue, 20 Aug 2013 03:38:47 GMT
-      Content-Length:
-      - '4961'
-      Connection:
-      - Keep-Alive
-    body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="utf-8"?><wsdl:definitions targetNamespace="http://tempuri.org/"
-        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
-        xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/"
-        xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
-        xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
-        xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
-        xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
-        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:i0="http://TranscribeMe.API.Web"
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"><wsdl:import
-        namespace="http://TranscribeMe.API.Web" location="http://transcribeme-api.cloudapp.net/PortalAPI.svc?wsdl"/><wsdl:types/><wsdl:binding
-        name="BasicHttpBinding_IPortalAPI" type="i0:IPortalAPI"><soap:binding transport="http://schemas.xmlsoap.org/soap/http"/><wsdl:operation
-        name="InitializeSession"><soap:operation soapAction="http://TranscribeMe.API.Web/IPortalAPI/InitializeSession"
-        style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
-        use="literal"/></wsdl:output></wsdl:operation><wsdl:operation name="SignUp"><soap:operation
-        soapAction="http://TranscribeMe.API.Web/IPortalAPI/SignUp" style="document"/><wsdl:input><soap:body
-        use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation><wsdl:operation
-        name="SignIn"><soap:operation soapAction="http://TranscribeMe.API.Web/IPortalAPI/SignIn"
-        style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
-        use="literal"/></wsdl:output></wsdl:operation><wsdl:operation name="GetUploadUrl"><soap:operation
-        soapAction="http://TranscribeMe.API.Web/IPortalAPI/GetUploadUrl" style="document"/><wsdl:input><soap:body
-        use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation><wsdl:operation
-        name="CommitUpload"><soap:operation soapAction="http://TranscribeMe.API.Web/IPortalAPI/CommitUpload"
-        style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
-        use="literal"/></wsdl:output></wsdl:operation><wsdl:operation name="TranscribeRecording"><soap:operation
-        soapAction="http://TranscribeMe.API.Web/IPortalAPI/TranscribeRecording" style="document"/><wsdl:input><soap:body
-        use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation><wsdl:operation
-        name="GetRecordingInfo"><soap:operation soapAction="http://TranscribeMe.API.Web/IPortalAPI/GetRecordingInfo"
-        style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
-        use="literal"/></wsdl:output></wsdl:operation><wsdl:operation name="GetCustomerRecordings"><soap:operation
-        soapAction="http://TranscribeMe.API.Web/IPortalAPI/GetCustomerRecordings"
-        style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
-        use="literal"/></wsdl:output></wsdl:operation><wsdl:operation name="FinalizeSession"><soap:operation
-        soapAction="http://TranscribeMe.API.Web/IPortalAPI/FinalizeSession" style="document"/><wsdl:input><soap:body
-        use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation><wsdl:operation
-        name="GetTranscription"><soap:operation soapAction="http://TranscribeMe.API.Web/IPortalAPI/GetTranscription"
-        style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
-        use="literal"/></wsdl:output></wsdl:operation><wsdl:operation name="GetTranscriptionLink"><soap:operation
-        soapAction="http://TranscribeMe.API.Web/IPortalAPI/GetTranscriptionLink" style="document"/><wsdl:input><soap:body
-        use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation><wsdl:operation
-        name="TranscribeUsingPromoCode"><soap:operation soapAction="http://TranscribeMe.API.Web/IPortalAPI/TranscribeUsingPromoCode"
-        style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
-        use="literal"/></wsdl:output></wsdl:operation><wsdl:operation name="ResetPassword"><soap:operation
-        soapAction="http://TranscribeMe.API.Web/IPortalAPI/ResetPassword" style="document"/><wsdl:input><soap:body
-        use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation><wsdl:operation
-        name="GetCustomerInfo"><soap:operation soapAction="http://TranscribeMe.API.Web/IPortalAPI/GetCustomerInfo"
-        style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body
-        use="literal"/></wsdl:output></wsdl:operation></wsdl:binding></wsdl:definitions>
-    http_version: 
-  recorded_at: Tue, 20 Aug 2013 03:38:41 GMT
+  recorded_at: Mon, 26 Aug 2013 01:11:49 GMT
 - request:
     method: post
     uri: http://transcribeme-api.cloudapp.net/PortalAPI.svc
@@ -176,7 +97,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: ''
+      message: OK
     headers:
       Cache-Control:
       - private
@@ -189,7 +110,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 20 Aug 2013 03:38:48 GMT
+      - Mon, 26 Aug 2013 02:46:04 GMT
       Content-Length:
       - '272'
       Connection:
@@ -197,9 +118,9 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><InitializeSessionResponse
-        xmlns="http://TranscribeMe.API.Web"><InitializeSessionResult>d338d33b-8103-4d06-8f72-dcc3a95b46ff</InitializeSessionResult></InitializeSessionResponse></s:Body></s:Envelope>
+        xmlns="http://TranscribeMe.API.Web"><InitializeSessionResult>2a7b3722-ddba-4a2e-a821-d4108d62faab</InitializeSessionResult></InitializeSessionResponse></s:Body></s:Envelope>
     http_version: 
-  recorded_at: Tue, 20 Aug 2013 03:38:42 GMT
+  recorded_at: Mon, 26 Aug 2013 02:46:13 GMT
 - request:
     method: post
     uri: http://transcribeme-api.cloudapp.net/PortalAPI.svc
@@ -207,7 +128,7 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://TranscribeMe.API.Web"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><wsdl:SignIn><wsdl:sessionID>0aaef84b-d303-493c-83c4-c6b69b7ea667</wsdl:sessionID><wsdl:username>example@transcribeme.com</wsdl:username><wsdl:password>example</wsdl:password></wsdl:SignIn></env:Body></env:Envelope>
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><wsdl:SignIn><wsdl:sessionID>2a7b3722-ddba-4a2e-a821-d4108d62faab</wsdl:sessionID><wsdl:username>example@transcribeme.com</wsdl:username><wsdl:password>example</wsdl:password></wsdl:SignIn></env:Body></env:Envelope>
     headers:
       Soapaction:
       - '"http://TranscribeMe.API.Web/IPortalAPI/SignIn"'
@@ -231,14 +152,61 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 26 Aug 2013 01:16:00 GMT
+      - Mon, 26 Aug 2013 02:46:06 GMT
       Content-Length:
       - '267'
       Connection:
       - Keep-Alive
     body:
       encoding: UTF-8
-      string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><SignInResponse xmlns="http://TranscribeMe.API.Web"><SignInResult>65a747ae-0ea4-46a4-afb0-2b76901005ae</SignInResult><errorCode>0</errorCode><errorMessage/></SignInResponse></s:Body></s:Envelope>
+      string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><SignInResponse
+        xmlns="http://TranscribeMe.API.Web"><SignInResult>8abbbc90-357d-4135-9558-c6bd3d48cac1</SignInResult><errorCode>0</errorCode><errorMessage/></SignInResponse></s:Body></s:Envelope>
     http_version: 
-  recorded_at: Mon, 26 Aug 2013 01:16:07 GMT
+  recorded_at: Mon, 26 Aug 2013 02:46:14 GMT
+- request:
+    method: post
+    uri: http://transcribeme-api.cloudapp.net/PortalAPI.svc
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://TranscribeMe.API.Web"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><wsdl:GetCustomerRecordings><wsdl:sessionID>2a7b3722-ddba-4a2e-a821-d4108d62faab</wsdl:sessionID></wsdl:GetCustomerRecordings></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - '"http://TranscribeMe.API.Web/IPortalAPI/GetCustomerRecordings"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '408'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.0
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 26 Aug 2013 02:46:18 GMT
+      Content-Length:
+      - '25176'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><GetCustomerRecordingsResponse
+        xmlns="http://TranscribeMe.API.Web"><GetCustomerRecordingsResult xmlns:a="http://schemas.datacontract.org/2004/07/TranscribeMe.API.Web"
+        xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><a:RecordingInfo><a:DateCreated>2013-07-24T05:04:34.69</a:DateCreated><a:Duration>1411.76</a:Duration><a:ID>d4912ce7-b0f5-4ddb-b0f0-fdfc8e608eb9</a:ID><a:Name>DW_A0126
+        AS part 1.wav</a:Name><a:Status>50</a:Status></a:RecordingInfo><a:RecordingInfo><a:DateCreated>2013-02-27T20:43:50.5</a:DateCreated><a:Duration>3116.86</a:Duration><a:ID>b26a304e-c1c6-42e1-b841-3c402bd33ccf</a:ID><a:Name>D1
+        commisioning learning history 010.3ga</a:Name><a:Status>50</a:Status></a:RecordingInfo><a:RecordingInfo><a:DateCreated>2013-08-21T01:47:03.917</a:DateCreated><a:Duration>430.75</a:Duration><a:ID>c33aeaef-efa4-4b2a-89b3-b5a8294ea844</a:ID><a:Name>3.
+        Share and celebrate - three speakers.mp3</a:Name><a:Status>50</a:Status></a:RecordingInfo></GetCustomerRecordingsResult><errorCode>0</errorCode><errorMessage/></GetCustomerRecordingsResponse></s:Body></s:Envelope>
+    http_version: 
+  recorded_at: Mon, 26 Aug 2013 02:46:27 GMT
 recorded_with: VCR 2.5.0

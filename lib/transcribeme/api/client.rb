@@ -55,9 +55,12 @@ module TranscribeMe
                                             'wsdl:username'   =>  username, 
                                             'wsdl:password'   =>  password }
 
+        error_message = response.body[:sign_in_response][:error_message]
+
+        raise error_message if error_message
+
         # Assign the customer_login_id variable to the string in the SOAP response
         @customer_login_id = response.body[:sign_in_response][:sign_in_result]
-        Response.from_savon response
       end
 
       # Public: Calls the 'GetCustomerRecordings' SOAP Action
