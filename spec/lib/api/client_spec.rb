@@ -110,10 +110,26 @@ describe TranscribeMe::API::Client do
         @recording = @recordings.first
       end
 
-      it 'should have properties' do
+      it 'has properties' do
         expect(@recording.keys).to eq [:date_created, :duration, :id, :name, :status]
       end
 
+    end
+
+  end
+
+  describe 'get an upload url' do
+
+    before :each do
+      VCR.use_cassette('upload_url') do
+        @client.initialize_session
+        @client.sign_in('example@transcribeme.com', 'example')
+        @url = @client.get_upload_url
+      end
+    end
+
+    it 'produces an upload url on Windows Azure Blob storage' do
+      expect(@url).to start_with "https://transcribeme.blob.core.windows.net/recordings/"
     end
 
   end
