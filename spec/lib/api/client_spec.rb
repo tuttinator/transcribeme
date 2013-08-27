@@ -134,4 +134,11 @@ describe TranscribeMe::API::Client do
 
   end
 
+  describe 'upload a file' do
+
+
+    it 'uploads successfully'
+
+  end
+
 end
