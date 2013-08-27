@@ -89,6 +89,56 @@ module TranscribeMe
         @upload_url = response.body[:get_upload_url_response][:get_upload_url_result] 
       end
 
+      # Public: uploads to Azure Blob Storage and commits the upload to
+      # the TranscribeMe SOAP API
+      #
+      # file_path - a String with the path to the actual file
+      # options   - a Hash with these keys:
+      #             :multiple_speakers  - Boolean (default is true)
+      #             :duration           - Float
+      #             :description        - String
+      #
+      # Returns the response as a Hash
+      def upload(file_path, options = {})
+
+        # If not logged in, raise this exception
+        raise 'Login first!' unless @customer_login_id
+
+        # Extract options from the options hash
+        multiple_speakers = options[:multiple_speakers] || true
+        description       = options[:description]
+        file_name         = File.basename(file_path)
+        file_format       = File.extname(file_path)
+        file_size         = File.stat(file_path).size
+        # Use the duration if provided in the options hash
+        duration          = options[:duration] || ::FFMPEG::Movie.new(file_path).duration
+
+        # Use the last upload url, or grab a new one
+        @upload_url ||= get_upload_url
+
+        # Create a connection to the upload url
+        connection = Excon.new(@upload_url)
+        # Upload to 
+        connection.put(headers: { "x-ms-blob-type" => "BlockBlob", 
+                                  "x-ms-date" => Time.now.to_s, 
+                                  "Content-Length" => file_size}, body: File.read(file_path))
+
+        # Post to the 
+        response = @savon.call :commit_upload, message: { "wsdl:sessionID"  => @session_id, 
+                                                          "wsdl:url" => @upload_url, 
+                                                          "wsdl:name" => file_name, 
+                                                          "wsdl:description" => description, 
+                                                          "wsdl:duration" => duration, 
+                                                          "wsdl:source" => "Ruby API Client",
+                                                          "wsdl:format" => file_format, 
+                                            "wsdl:isMultipleSpeakers" => multiple_speakers }
+                   
+        # Set the upload url to nil so that we don't reuse it             
+        @upload_url = nil
+
+        response
+      end
+
       # Public: Calls the 'TranscribeRecording' SOAP Action
       #
       # recording_id - a String in GUID format
@@ -127,9 +177,39 @@ module TranscribeMe
       #
       # Returns the SOAP response Hash
       def get_recording_info(recording_id)
-        @savon.call :get_recording_info,
+        response = @savon.call :get_recording_info,
                     message: { 'wsdl:sessionID'   => @session_id,
                                'wsdl:recordingID' => recording_id }
+        response.body[:get_recording_info_response][:get_recording_info_result]
+      end
+
+      # Public: Calls the 'GetTranscription' SOAP Action to allow for 
+      # downloading of transcriptions
+      #
+      # recording_id - a String in GUID format
+      # format       - a Symbol - either :text, :rtf, :pdf, :html
+      #
+      # Returns the file data in a String to write to a file (decoded from Base64.)
+      def get_transcription(recording_id, format = :text)
+        format_type = case format
+        when :text
+          "Text"
+        else
+          format.to_s.upcase
+        end
+
+        response = @savon.call :get_transcription, message: { 'wsdl:sessionID' => @session_id, 
+                                                              'wsdl:recId' => recording_id, 
+                                                              'wsdl:formattingType' => format_type }
+
+        error_message = response.body[:get_transcription_response][:error_message]
+        raise error_message if error_message
+
+        transcription = response.body[:get_transcription_response][:get_transcription_result]
+
+        raise "Transcription unable to be downloaded" if transcription.nil?
+
+        Base64.decode64(transcription)
       end
 
       # Public: Calls the 'FinalizeSession' SOAP Action to close 

@@ -1,3 +1,5 @@
 require 'savon'
+require 'streamio-ffmpeg'
+require 'excon'
 require 'transcribeme/version'
 require 'transcribeme/api/client'

@@ -16,6 +16,10 @@ Changes from prior 1.0.0 include bringing the Ruby method names in line with the
 
 This gem wants to make it easy for you. If you call the 'sign_in' method before initializing a session then we all know you meant to. We'll jump right in there and initialize it for you.
 
+## Prerequisites
+
+This gem relies on FFMPEG for determining the duration of audio (and video) files. The TranscribeMe SOAP API leaves it as the client's responsibility for determining the duration of files being uploaded.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -48,12 +52,12 @@ Version 1.0.0 stable
 - [ x ] Set up Travis-CI and document supported Ruby versions
 - [ x ] Investigate Windows Azure Blob storage file upload
 - [ x ] Include Excon for Windows Azure Blob storage
-- [   ] Base64 decrypt transcription results
+- [ x ] Base64 decrypt transcription results
 - [   ] Document SOAP calls and error messages
 - [   ] Complete YARD documentation
 - [   ] Include option (default)
 - [   ] Validations for GUIDs 
-- [   ] Exceptions for error handling
+- [   ] Exceptions for error handling (about 50%)
 - [   ] Modelling Recording objects, particularly better describing recording status
 
 Version 1.1.0
