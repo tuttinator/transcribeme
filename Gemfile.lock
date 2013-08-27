@@ -4,6 +4,7 @@ PATH
     transcribeme (1.0.0.alpha)
       excon (~> 0.25.3)
       savon (~> 2.2)
+      streamio-ffmpeg (~> 1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -105,6 +106,7 @@ GEM
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
     slop (3.4.6)
+    streamio-ffmpeg (1.0.0)
     terminal-notifier-guard (1.5.3)
     thor (0.18.1)
     vcr (2.5.0)
