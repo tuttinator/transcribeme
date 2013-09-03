@@ -163,7 +163,7 @@ module TranscribeMe
       def transcribe_recording_using_promocode(recording_id, promocode)
         # initialize_session unless @session.try :valid?
         
-        response = @savon.call :transcribe_recording_using_promocode, 
+        response = @savon.call :transcribe_using_promo_code, 
                                message: { 'wsdl:sessionID'   => @session_id, 
                                           'wsdl:recordingId' => recording_id,
                                           'wsdl:promoCode'   => promocode }
