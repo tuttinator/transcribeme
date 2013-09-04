@@ -55,7 +55,6 @@ Version 1.0.0 stable
 - [x] Base64 decrypt transcription results
 - [ ] Document SOAP calls and error messages
 - [ ] Complete YARD documentation
-- [ ] Include option (default)
 - [ ] Validations for GUIDs 
 - [ ] Exceptions for error handling (about 50%)
 - [ ] Modelling Recording objects, particularly better describing recording status
