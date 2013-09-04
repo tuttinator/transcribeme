@@ -1,0 +1,3 @@
+errors:
+  expired_session: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><SignInResponse xmlns="http://TranscribeMe.API.Web"><SignInResult>00000000-0000-0000-0000-000000000000</SignInResult><errorCode>100</errorCode><errorMessage>Requested session has been removed or expired.</errorMessage></SignInResponse></s:Body></s:Envelope>
+  invalid_credentials: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><SignInResponse xmlns="http://TranscribeMe.API.Web"><SignInResult>00000000-0000-0000-0000-000000000000</SignInResult><errorCode>204</errorCode><errorMessage>Provided credentials are invalid. Please check your login and password and try again.</errorMessage></SignInResponse></s:Body></s:Envelope>
