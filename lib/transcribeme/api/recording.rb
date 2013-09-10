@@ -6,7 +6,7 @@ module TranscribeMe
     class Recording
 
       # Define attributes
-      ATTRIBUTES = [:date_created, :duration, :id, :name, :status, :state]
+      ATTRIBUTES = [:date_created, :duration, :id, :name, :status, :state].freeze
 
       # Recording attributes
       ATTRIBUTES.each do |attr|
@@ -27,7 +27,7 @@ module TranscribeMe
         35 => "Processing Audio",
         40 => "In Progress",
         50 => "Completed",
-        90 => "Deleted" }
+        90 => "Deleted" }.freeze
 
 
       # Public: Initializes the Recording class
