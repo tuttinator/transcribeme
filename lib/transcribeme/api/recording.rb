@@ -35,7 +35,7 @@ module TranscribeMe
       # recording - Hash with attributes from SOAP response
       #
       def initialize(recording)
-        recordings.each do |key, value|
+        recording.each do |key, value|
           if ATTRIBUTES.member? key.to_sym
             self.send (key.to_s + "="), value
           end
