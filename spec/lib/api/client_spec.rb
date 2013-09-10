@@ -111,7 +111,7 @@ describe TranscribeMe::API::Client do
       end
 
       it 'has properties' do
-        expect(@recording.list.first.keys).to eq [:date_created, :duration, :id, :name, :status, :state]
+        expect(@recording.keys).to eq [:date_created, :duration, :id, :name, :status, :state]
       end
 
     end
