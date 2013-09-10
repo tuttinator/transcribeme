@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    transcribeme (1.0.0.rc1)
+    transcribeme (1.0.0)
       excon (~> 0.25.3)
       savon (~> 2.3.0)
       streamio-ffmpeg (~> 1.0.0)

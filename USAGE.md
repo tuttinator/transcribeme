@@ -25,21 +25,26 @@ To get your recordings, call the `get_recordings` method:
 
     recordings = client.get_recordings
 
-This will return an array of hashes. These hashes have the following keys: `:date_created`, `:duration`, `:id`, `:name` and `:status`.
+This will return a object which holds an array of recording instances. These objects have the following keys: `:date_created`, `:duration`, `:id`, `:name`, `:status` and `:state`.
 
-TODO: Status is currently slightly cryptic, and this will improve.
+To view all the items in the array, use the `.list` or `.all` class methods.
 
-    "10" # => Ready for transcription
-    "40" # => In Progress
-    "50" # => Complete
+The Recording class delegates methods to the array of recordings, but also includes convenience methods:
 
-using `Array#select` you can filter for recordings that are in progress, complete or ready for transcription. This will be refactored post 1.0.0.
+    recordings.completed
+    recordings.in_progress
+    recordings.processing_audio
+    recordings.ready_for_transcription
 
-Array#select examples:
+Anything you might expect to be able to do on an array is possible thanks to the magic of Ruby's `method_missing`:
 
-    completed   = recordings.select {|x| x[:status] == "50"}
-    in_progress = recordings.select {|x| x[:status] == "40"}
-    ready       = recordings.select {|x| x[:status] == "10"}
+    recordings.each do |recording|
+      puts recording[:name]
+    end
+
+Instances of the recording class have appropriate type-casting, partially due to the magic Savon gives us (type casting a date string to a DateTime object), and this class cleans up the odd String into a float or integer as appropriate.
+
+Please note, that durations are floats in seconds.
 
 #### Uploading recordings
 
@@ -77,6 +82,9 @@ Or you can also include a second argument, to overwrite the defaults.
       #             :multiple_speakers  - Boolean (default is true)
       #             :duration           - Float
       #             :description        - String
+
+
+An example of using these options looks like this:
 
     client.upload 'my_cool_file.mp3', { duration: 12345.12, multiple_speakers: false, description: "Yo!" }
 
