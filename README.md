@@ -10,11 +10,7 @@
 
 This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon, and includes some extra dangly bits for uploading to Windows Azure Blob storage.
 
-The DSL may change before 1.0.0 stable is released. 
-
-Changes from prior 1.0.0 include bringing the Ruby method names in line with the actual SOAP action names.
-
-This gem wants to make it easy for you. If you call the 'sign_in' method before initializing a session then we all know you meant to. We'll jump right in there and initialize it for you.
+This gem wants to make it easy for you. It tries, at least. If you call the 'sign_in' method before initializing a session then we all know you meant to. We'll jump right in there and initialize it for you.
 
 ## Prerequisites
 

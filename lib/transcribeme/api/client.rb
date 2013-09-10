@@ -11,6 +11,8 @@ module TranscribeMe
       attr_reader :session_expiry_time
       # Public: Returns the underlining Savon object
       attr_reader :savon
+      # Public: Returns the last list of recordings
+      attr_reader :recordings
 
       WSDL = 'http://transcribeme-api.cloudapp.net/PortalAPI.svc?wsdl=wsdl0'
       ENDPOINT = 'http://transcribeme-api.cloudapp.net/PortalAPI.svc'
@@ -67,14 +69,15 @@ module TranscribeMe
       #
       # requires the user to be logged in
       #
-      # Returns an Array of Hashes of with the properties of recording objects
+      # Returns an Array of recording objects
       def get_recordings
         # raise 'Login first!' unless @customer_login_id
 
         response = @savon.call  :get_customer_recordings, 
                                 message: {  'wsdl:sessionID' => session_id }
 
-        @recordings = response.body[:get_customer_recordings_response][:get_customer_recordings_result][:recording_info]                                
+        # Returns an array of instances of the Recording class
+        @recordings = Recording.new_from_soap response.body[:get_customer_recordings_response][:get_customer_recordings_result][:recording_info]
       end
 
       # Public: Calls the 'GetUploadUrl' SOAP Action
@@ -168,7 +171,7 @@ module TranscribeMe
                                           'wsdl:recordingId' => recording_id,
                                           'wsdl:promoCode'   => promocode }
 
-        response.body[:transcribe_recording_using_promocode_response][:transcribe_recording_using_promocode_result]
+        response.body[:transcribe_using_promo_code_response][:transcribe_using_promo_code_result]
       end
 
       # Public: Calls the 'GetRecordingInfo' SOAP Action
@@ -229,6 +232,7 @@ module TranscribeMe
       def session_valid?
         @session_expiry_time > Time.now if @session_expiry_time
       end
+
 
     end
 
