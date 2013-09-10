@@ -31,12 +31,23 @@
         <h1>
 <a name="transcribeme-gem" class="anchor" href="#transcribeme-gem"><span class="octicon octicon-link"></span></a>TranscribeMe gem</h1>
 
-<p><a href="http://badge.fury.io/rb/transcribeme"><img src="https://badge.fury.io/rb/transcribeme.png" alt="Gem Version"></a>
+<p><a href="https://travis-ci.org/tuttinator/transcribeme"><img src="https://travis-ci.org/tuttinator/transcribeme.png?branch=master" alt="Build Status"></a>
+<a href="http://badge.fury.io/rb/transcribeme"><img src="https://badge.fury.io/rb/transcribeme.png" alt="Gem Version"></a>
 <a href="https://gemnasium.com/tuttinator/transcribeme"><img src="https://gemnasium.com/tuttinator/transcribeme.png" alt="Dependency Status"></a>
 <a href="https://coveralls.io/r/tuttinator/transcribeme"><img src="https://coveralls.io/repos/tuttinator/transcribeme/badge.png" alt="Coverage Status"></a>
 <a href="https://codeclimate.com/github/tuttinator/transcribeme"><img src="https://codeclimate.com/github/tuttinator/transcribeme.png" alt="Code Climate"></a></p>
 
-<p>This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon</p>
+<h3>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h3>
+
+<p>This gem is a Ruby wrapper for the TranscribeMe SOAP API, built on Savon, and includes some extra dangly bits for uploading to Windows Azure Blob storage.</p>
+
+<p>This gem wants to make it easy for you. It tries, at least. If you call the 'sign_in' method before initializing a session then we all know you meant to. We'll jump right in there and initialize it for you.</p>
+
+<h2>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<p>This gem relies on FFMPEG for determining the duration of audio (and video) files. The TranscribeMe SOAP API leaves it as the client's responsibility for determining the duration of files being uploaded.</p>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -59,7 +70,7 @@
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>TODO: Write usage instructions here</p>
+<p>See USAGE.md</p>
 
 <h2>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
@@ -71,12 +82,36 @@
 <h2>
 <a name="roadmap" class="anchor" href="#roadmap"><span class="octicon octicon-link"></span></a>Roadmap</h2>
 
+<p>Version 1.0.1</p>
+
 <ul>
-<li>[ ] Write specs</li>
-<li>[ ] Set up Travis-CI and document supported Ruby versions</li>
-<li>[ ] Investigate Windows Azure Blob storage file upload</li>
-<li>[ ] Document SOAP calls and error messages</li>
-<li>[ ] Complete YARD documentation</li>
+<li><p>[x] Set up Travis-CI and document supported Ruby versions</p></li>
+<li><p>[x] Investigate Windows Azure Blob storage file upload</p></li>
+<li><p>[x] Include Excon for Windows Azure Blob storage</p></li>
+<li><p>[x] Base64 decrypt transcription results</p></li>
+<li><p>[x] Document SOAP calls and error messages</p></li>
+<li><p>[x] Complete YARD documentation</p></li>
+<li><p>[x] Refactor the recordings array into an object with <code>.completed</code> <code>.in_progress</code> and <code>.ready_for_transcription</code> methods</p></li>
+<li><p>[x] Exceptions for error handling</p></li>
+<li><p>[x] Modelling Recording objects, particularly better describing recording status</p></li>
+<li><p>[ ] Reduce gem size through reducing spec support files (download as needed during specs, gitignored?)</p></li>
+</ul><p>Version 1.1.0</p>
+
+<ul>
+<li><p>[ ] Implement the customer sign up API</p></li>
+<li><p>[ ] Implement the customer reset password</p></li>
+</ul><p>Version 1.2.0</p>
+
+<ul>
+<li>[ ] Create a CLI interface</li>
+</ul><p>RubyMotion</p>
+
+<ul>
+<li>[ ] A RubyMotion fork (transcribeme-motion), wrapped in BubbleWrap's HTTP DSL (watch this space)</li>
+</ul><p>REST API Wrapper</p>
+
+<ul>
+<li>[ ] A Sinatra RESTful wrapper around the SOAP operations for your own personal REST API middleman, with JSON-ic magic at your fingertips. JSON was always my favourite Argonaut.</li>
 </ul><h2>
 <a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
