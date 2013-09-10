@@ -42,25 +42,34 @@ The documentation can be [browsed online](http://rubydoc.info/github/tuttinator/
 
 ## Roadmap
 
-Version 1.0.0 stable
+Version 1.0.1
 
-- [ ] Write specs (WIP)
 - [x] Set up Travis-CI and document supported Ruby versions
+
 - [x] Investigate Windows Azure Blob storage file upload
+
 - [x] Include Excon for Windows Azure Blob storage
+
 - [x] Base64 decrypt transcription results
-- [ ] Document SOAP calls and error messages
-- [ ] Complete YARD documentation
-- [ ] Validations for GUIDs 
-- [ ] Exceptions for error handling (about 50%)
-- [ ] Modelling Recording objects, particularly better describing recording status
+
+- [x] Document SOAP calls and error messages
+
+- [x] Complete YARD documentation
+
+- [x] Refactor the recordings array into an object with `.completed` `.in_progress` and `.ready_for_transcription` methods
+
+- [x] Exceptions for error handling
+
+- [x] Modelling Recording objects, particularly better describing recording status
+
 - [ ] Reduce gem size through reducing spec support files (download as needed during specs, gitignored?)
-- [ ] Implement the customer sign up API
-- [ ] Implement the customer reset password
 
 Version 1.1.0
 
-- [ ] Refactor the recordings array into an object with `#completed` `#in_progress` and `#ready` instance methods
+
+- [ ] Implement the customer sign up API
+
+- [ ] Implement the customer reset password
 
 Version 1.2.0
 
