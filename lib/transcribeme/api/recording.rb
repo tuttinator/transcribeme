@@ -5,8 +5,13 @@ module TranscribeMe
     # representation of recording objects
     class Recording
 
+      # Define attributes
+      ATTRIBUTES = [:date_created, :duration, :id, :name, :status, :state]
+
       # Recording attributes
-      attr_reader :date_created, :duration, :id, :name, :status, :state
+      ATTRIBUTES.each do |attr|
+        attr_reader attr
+      end
 
       # Define status codes
       STATUS_CODES = { 
@@ -30,48 +35,63 @@ module TranscribeMe
       # recording - Hash with attributes from SOAP response
       #
       def initialize(recording)
-        [:date_created, :duration, :id, :name, :status].each do |key|
-          self.send :"#{key}=", recording[key]
+        recordings.each do |key, value|
+          if ATTRIBUTES.member? key.to_sym
+            self.send (key.to_s + "="), value
+          end
         end
       end
 
       # Public: Hash-like access to the attributes
+      #
+      # key - String or Symbol
+      #
+      # Returns the result of that method call
       def [](key)
-        self.send key
+        self.send key.to_sym
+      end
+
+      def keys
+        ATTRIBUTES
       end
 
       private
 
-      # Private: Setter methods for the date_created, id and 
-      #   name attributes
-      #
-      # value - object
-      #
-      # Returns the Object after assigning to an instance variable
-      [:date_created, :id, :name].each do |attr|
-        define_method :"#{attr}=" do |value|
-          instance_variable_set :"@#{attr}", value
+      # Private: Iterate through all attributes and define setter
+      #  methods on them
+      ATTRIBUTES.each do |attr|
+        case attr
+        when :status
+          # Private: Sets the state as well as the status according
+          #   to the status code
+          #
+          # value - string
+          #
+          # Returns the status code as an Integer
+          define_method :status= do |value|
+            @state = STATUS_CODES[value.to_i]
+            @status = value.to_i
+          end
+        when :duration
+          # Private: Sets the duration as a float
+          #
+          # value - string
+          #
+          # Returns the duration as an Float
+          define_method :duration= do |value|
+            @duration = value.to_f
+          end
+        else
+          # Private: Setter methods for the date_created, id and 
+          #   name attributes
+          #
+          # value - object
+          #
+          # Returns the Object after assigning to an instance variable
+          define_method :"#{attr}=" do |value|
+            instance_variable_set :"@#{attr}", value
+          end
         end
-      end
-
-      # Private: Sets the state as well as the status according
-      #   to the status code
-      #
-      # value - string
-      #
-      # Returns the status code as an Integer
-      def status=(value)
-        @state = STATUS_CODES[value.to_i]
-        @status = value.to_i
-      end
-
-      # Private: Sets the duration as a float
-      #
-      # value - string
-      #
-      # Returns the duration as an Float
-      def duration=(value)
-        @duration = value.to_f
       end
 
       # Class Methods

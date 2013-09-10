@@ -101,7 +101,7 @@ describe TranscribeMe::API::Client do
     end
 
     it 'returns an array of recordings' do
-      expect(@recordings.class.to_s).to eq "Array"
+      expect(@recordings.list.class.to_s).to eq "Array"
     end
 
     describe 'recordings' do
@@ -111,7 +111,7 @@ describe TranscribeMe::API::Client do
       end
 
       it 'has properties' do
-        expect(@recording.keys).to eq [:date_created, :duration, :id, :name, :status]
+        expect(@recording.list.first.keys).to eq [:date_created, :duration, :id, :name, :status, :state]
       end
 
     end
