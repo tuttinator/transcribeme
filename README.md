@@ -32,7 +32,7 @@ Or install it yourself as:
 
 ## Usage
 
-See USAGE.md
+See [USAGE.md](USAGE.md)
 
 ## Documentation
 
