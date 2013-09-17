@@ -67,6 +67,7 @@ Get [Homebrew](http://brew.sh/) and then
 
 Not yet tested on Windows environments. Feel free to send feedback / advice on an FFMPEG alternative.
 
+`streamio-ffmpeg` may or may not work under JRuby, not yet tested.
 
 RubyMotion - this gem uses synchronous connections, and other stuff making it inappropriate. A RubyMotion-specific gem is in the works.
 
