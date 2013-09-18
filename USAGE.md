@@ -17,7 +17,7 @@ API Sessions have a lifetime of 1 hour. When we sign in as a user an API session
 
     client.sign_in 'example@transcribeme.com', 'example'
 
-GUIDs are prolific. Your session id is a GUID, and will be available in `client.session_id` but the result of signing in will return your Customer ID. Don't worry, you won't need this.
+GUIDs are prolific. Your session id is a GUID, and will be available in `client.session_id` but the return value of signing in will return your Customer ID. Don't worry, you won't need this.
 
 #### Getting a list of recordings
 
@@ -44,7 +44,7 @@ Anything you might expect to be able to do on an array is possible thanks to the
 
 Instances of the recording class have appropriate type-casting, partially due to the magic Savon gives us (type casting a date string to a DateTime object), and this class cleans up the odd String into a float or integer as appropriate.
 
-Please note, that durations are floats in seconds.
+Please note, that audio duration is a float representing time in seconds.
 
 #### Uploading recordings
 
@@ -69,7 +69,7 @@ Not yet tested on Windows environments. Feel free to send feedback / advice on a
 
 `streamio-ffmpeg` may or may not work under JRuby, not yet tested.
 
-RubyMotion - this gem uses synchronous connections, and other stuff making it inappropriate. A RubyMotion-specific gem is in the works.
+RubyMotion - this gem uses synchronous connections making it inappropriate. A RubyMotion-specific gem is in the works.
 
 ###### Actually uploading files
 
@@ -89,7 +89,7 @@ An example of using these options looks like this:
 
     client.upload 'my_cool_file.mp3', { duration: 12345.12, multiple_speakers: false, description: "Yo!" }
 
-This can take some time, as it first uses [Excon](http://excon.io/) to upload to Windows Azure Blob Storage, using the URL asked provided by the API. Once the upload to Windows Azure completes, it sends a SOAP request to the API to confirm the file name and details. The recording is then in the initial state - Status 10, Ready for Transcription.
+This can take some time, as it first uses [Excon](http://excon.io/) to upload to Windows Azure Blob Storage, using the URL provided by the API. Once the upload to Windows Azure completes, it sends a SOAP request to the API to confirm the file name and details. The recording is then in the initial state - Status 10, Ready for Transcription.
 
 The return value is the response hash, which includes the Recording ID. This Recording ID is a GUID, and you may want to hold on to it. It will be available in the list of recordings.
 
