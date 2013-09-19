@@ -148,21 +148,21 @@ module TranscribeMe
         #
         # Returns an Array with only the recordings of status 40
         def in_progress
-          list.select {|l| l[:state] == 40 }
+          list.select {|l| l[:status] == 40 }
         end
 
         # Public: Gets the list of recordings currently processing audio
         #
         # Returns an Array with only the recordings of status 35
         def processing_audio
-          list.select {|l| l[:state] == 35 }
+          list.select {|l| l[:status] == 35 }
         end
 
         # Public: Gets the list of recordings currently ready for transcription
         #
         # Returns an Array with only the recordings of status 10
         def ready_for_transcription
-          list.select {|l| l[:state] == 10 }
+          list.select {|l| l[:status] == 10 }
         end
 
         # Alias :ready_for_transcription to :ready for convenience
