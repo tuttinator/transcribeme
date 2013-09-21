@@ -77,7 +77,7 @@ module TranscribeMe
                                 message: {  'wsdl:sessionID' => session_id }
 
         # Returns an array of instances of the Recording class
-        @recordings = Recording.new_from_soap response.body[:get_customer_recordings_response][:get_customer_recordings_result][:recording_info]
+        @recordings = TranscribeMe::Recording.new_from_soap response.body[:get_customer_recordings_response][:get_customer_recordings_result][:recording_info]
       end
 
       # Public: Calls the 'GetUploadUrl' SOAP Action
