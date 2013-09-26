@@ -48,6 +48,10 @@ describe TranscribeMe::Recording do
         expect(recordings.to_s).to eq recordings.inspect
       end
 
+      it 'has a completed method' do
+        expect(recordings).to respond_to :completed
+      end
+
     end
 
   end
