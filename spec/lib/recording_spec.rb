@@ -52,6 +52,10 @@ describe TranscribeMe::Recording do
         expect(recordings).to respond_to :completed
       end
 
+      it 'has a in_progress method' do
+        expect(recordings).to respond_to :in_progress
+      end
+
     end
 
   end
