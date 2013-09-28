@@ -56,6 +56,10 @@ describe TranscribeMe::Recording do
         expect(recordings).to respond_to :in_progress
       end
 
+      it 'has a processing_audio method' do
+        expect(recordings).to respond_to :processing_audio
+      end
+
     end
 
   end
