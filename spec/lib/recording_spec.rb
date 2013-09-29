@@ -60,6 +60,10 @@ describe TranscribeMe::Recording do
         expect(recordings).to respond_to :processing_audio
       end
 
+      it 'has a ready_for_transcription method' do
+        expect(recordings).to respond_to :ready_for_transcription
+      end
+
     end
 
   end
