@@ -43,7 +43,7 @@ describe TranscribeMe::Recording do
         expect(recordings).to respond_to :inspect
       end
 
-      it 'aliases the inspect model to to_s' do
+      it 'aliases the inspect method to to_s' do
         expect(recordings).to respond_to :to_s
         expect(recordings.to_s).to eq recordings.inspect
       end
@@ -62,6 +62,11 @@ describe TranscribeMe::Recording do
 
       it 'has a ready_for_transcription method' do
         expect(recordings).to respond_to :ready_for_transcription
+      end
+
+      it 'aliases the ready_for_transcription to ready' do
+        expect(recordings).to respond_to :ready
+        expect(recordings.ready).to eq recordings.ready_for_transcription
       end
 
     end
