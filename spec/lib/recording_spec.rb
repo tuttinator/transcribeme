@@ -121,4 +121,31 @@ describe TranscribeMe::Recording do
 
   end
 
+  describe 'the internal array of recordings' do
+
+    before :each do
+      # Reset the list of recordings
+      TranscribeMe::Recording::class_variable_set(:@@list, [])
+      @list = TranscribeMe::Recording::class_variable_get(:@@list)
+
+      @recording_factory = -> do 
+        { date_created: DateTime.now, 
+          duration: 200.59, 
+          id: SecureRandom.uuid, 
+          name: "Sample Recording", 
+          status: 10, 
+          state: "Ready for Transcription" }
+        end
+
+      @recording = TranscribeMe::Recording.new_from_soap([@recording_factory.call])
+    end
+
+    # it "keeps an internal list of recordings" do
+    #   expect do
+    #     TranscribeMe::Recording.new_from_soap([@recording_factory.call])
+    #   end.to change { @list.count }.by(1)
+    # end
+
+  end
+
 end
