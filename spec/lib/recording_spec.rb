@@ -126,8 +126,6 @@ describe TranscribeMe::Recording do
     before :each do
       # Reset the list of recordings
       TranscribeMe::Recording::class_variable_set(:@@list, [])
-      @list = TranscribeMe::Recording::class_variable_get(:@@list)
-
       @recording_factory = -> do 
         { date_created: DateTime.now, 
           duration: 200.59, 
@@ -140,11 +138,15 @@ describe TranscribeMe::Recording do
       @recording = TranscribeMe::Recording.new_from_soap([@recording_factory.call])
     end
 
-    # it "keeps an internal list of recordings" do
-    #   expect do
-    #     TranscribeMe::Recording.new_from_soap([@recording_factory.call])
-    #   end.to change { @list.count }.by(1)
-    # end
+    it "keeps an internal list of recordings" do
+
+      TranscribeMe::Recording::class_variable_set(:@@list, [])
+
+      recordings = [] << @recording_factory.call << @recording_factory.call << @recording_factory.call
+      expect do
+        TranscribeMe::Recording.new_from_soap(recordings)
+      end.to change {TranscribeMe::Recording::class_variable_get(:@@list).count}.by(recordings.count)
+    end
 
   end
 
