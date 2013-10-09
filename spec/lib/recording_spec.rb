@@ -131,8 +131,7 @@ describe TranscribeMe::Recording do
           duration: 200.59, 
           id: SecureRandom.uuid, 
           name: "Sample Recording", 
-          status: 10, 
-          state: "Ready for Transcription" }
+          status: 10 }
         end
 
       @recording = TranscribeMe::Recording.new_from_soap([@recording_factory.call])
